@@ -1,0 +1,78 @@
+﻿@model CollegeWepPortal.Models.STUDENT
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .LoginDiv {
+        position: absolute;
+        left: 40%;
+        top: 40%;
+        border: 1px solid #ccc;
+        padding: 10px 10px;
+    }
+</style>
+<h2>Login Page</h2>
+
+
+@using (Html.BeginForm("Authorize", "STUDENTs", FormMethod.Post))
+{
+    <div id="LoginDiv">
+
+
+        <table class="tableNew">
+
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.StudentID)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.StudentID)
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr> </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Password)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Password)
+                </td>
+
+            </tr>
+
+            <tr>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Role)
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Role, new List<SelectListItem>
+                        {
+
+                        new SelectListItem { Text = "Admin", Value = "Admin"},
+                        new SelectListItem { Text = "User", Value = "User"},
+
+                        }, "Select Role")
+                </td>
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" name="name" />
+                </td>
+            </tr>
+
+
+
+        </table>
+    </div>
+}

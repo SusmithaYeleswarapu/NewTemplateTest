@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CollegeWepPortal.Models.STUDENT>
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_MyAdminLayout.cshtml";
+}
+
+<h2>History</h2>
+
+<div class="container">
+
+
+    <table class="table table-bordered">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Age</th>
+            </tr>
+        </thread>
+        <tbody id="DataSearching">
+            @if (Model.Count() == 0)
+            {
+                foreach (var Item in Model)
+                {
+                    if (Item.deleted == 1)
+                    {
+                        <tr>
+                            <td>@Item.StudentID</td>
+                            <td>@Item.StudentName</td>
+                            <td>@Item.Department</td>
+                            <td>@Item.Age</td>
+                        </tr>
+                    }
+                }
+            }
+
+            else
+            {
+
+
+                foreach (var Item in Model)
+                {
+                    if (Item.deleted == 1)
+                    {
+                        <tr>
+                            <td>@Item.StudentID</td>
+                            <td>@Item.StudentName</td>
+                            <td>@Item.Department</td>
+                            <td>@Item.Age</td>
+                            <td>
+                                <div class="form-actions no-color">
+                                    @using (Html.BeginForm("Restore", "STUDENTs", new { id = @Item.StudentID }, FormMethod.Get, null))
+                                    {
+
+                                        <input type="submit" value="Restore" />
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

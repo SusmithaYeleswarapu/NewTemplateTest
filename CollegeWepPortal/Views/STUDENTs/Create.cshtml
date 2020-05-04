@@ -1,0 +1,111 @@
+﻿@model CollegeWepPortal.Models.STUDENT
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MyAdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>STUDENT</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.StudentID)
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StudentName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownListFor(model => model.Department, new List<SelectListItem>
+{
+   new SelectListItem { Text = "IT", Value = "  IT", Selected=true},
+   new SelectListItem { Text = "CSE", Value = "CSE"},
+   new SelectListItem { Text = "ECE", Value = "ECE"},
+   new SelectListItem { Text = "Civil", Value = "Civil"},
+   new SelectListItem { Text = "Mechanical", Value = "Mechanical"},
+
+        }, "Select Department",/*model => model.Department ,*/new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+
+            @*@Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control" } })*@
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.StudentID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StudentID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @*<input type="submit" value="Create" class=" btn-default" onclick="location.href= '@Url.Action("Create","STUDENTs")'" />*@
+            <button> @Html.ActionLink("Create", "Create") </button>
+            <button> @Html.ActionLink("Cancel", "Create") </button>
+        </div>
+
+
+
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to HomePage", "HomePageAdmin")
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CollegeWepPortal.Models.STUDENT>
+@{
+    ViewBag.Title = "SearchAdmin";
+    Layout = "~/Views/Shared/_MyAdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("SearchAdmin", "STUDENTs", FormMethod.Get))
+{
+    @Html.TextBox("Searching")
+    <input type="submit" id="SearchBtn" value="Search" />
+    <br />
+    <br />
+}
+
+<div class="container">
+
+
+    <table class="table table-bordered">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Age</th>
+            </tr>
+        </thread>
+        <tbody id="DataSearching">
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3" style="color:red"> No Match Found</td>
+                </tr>
+            }
+
+            else
+            {
+
+
+                foreach (var Item in Model)
+                {
+                    if (Item.deleted == 0 && Item.Role.Equals("User"))
+                    {
+                        <tr>
+                            <td>@Item.StudentID</td>
+                            <td>@Item.StudentName</td>
+                            <td>@Item.Department</td>
+                            <td>@Item.Age</td>
+                            <td>
+
+                                <div class="form-actions no-color">
+                                    @using (Html.BeginForm("Delete", "STUDENTs", new { id = @Item.StudentID }, FormMethod.Get, null))
+                                    {
+
+                                        <input type="submit" value="Delete" />
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-actions no-color">
+                                    @using (Html.BeginForm("Edit", "STUDENTs", new { id = @Item.StudentID }, FormMethod.Get, null))
+                                    {
+
+                                        <input type="submit" value="Edit" />
+                                    }
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
